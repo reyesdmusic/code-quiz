@@ -1,0 +1,126 @@
+body {
+    display: block;
+    margin: 0px;
+    /* background-color: rgb(90, 7, 4); */
+    background-color: rgb(252, 214, 0);
+    height: 100% auto;
+    color: rgb(0, 2, 27);
+  }
+  
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+#footer {
+    background-color: rgb(0, 2, 27);
+    width: 100%;
+    padding: 0px;
+    position: fixed;
+    bottom: 0px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    color: white;
+}
+
+#starting-prompt {
+
+    background-color: white;
+    height: auto;
+    text-align: center;
+    margin-top: 80px;
+    padding: 20px;
+    margin-bottom: 100px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#questions-prompt {
+
+  background-color: white;
+  height: auto;
+  text-align: center;
+  margin-top: 80px;
+  padding: 20px;
+  margin-bottom: 100px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#high-scores-prompt {
+
+  background-color: white;
+  height: auto;
+  text-align: center;
+  margin-top: 80px;
+  padding: 20px;
+  margin-bottom: 100px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#save-score-prompt {
+
+  background-color: white;
+  height: auto;
+  text-align: center;
+  margin-top: 80px;
+  padding: 20px;
+  margin-bottom: 100px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.button {
+  background-color: rgb(0, 2, 27);
+  color: white;
+  padding: 7px;
+  border: none;
+  font-size: 16px;
+  border-radius: 8px;
+  margin: 8px;
+}
+
+
+h1, h2, button, footer {
+  text-align: center;
+  font-family: 'Patua One';
+}
+
+
+h5 {
+  font-size: 18px;
+}
+
+.question-button {
+  background-color: rgb(45, 134, 250);
+  width: 100%;
+}
+
+button:hover {
+  opacity: .5;
+}
+
+#timer {
+  position: absolute;
+  right: 100px;
+  font-family: 'Patua One';
+  font-size: 20px;
+}
+
+#time-left {
+  color: rgb(255, 51, 0);
+}
+
+#question {
+
+  font-family: 'Patua One';
+  font-size: 25px;
+}
+
+li {
+  line-height: 40px;
+  margin-bottom: 15px;
+  font-size: 20px;
+}
