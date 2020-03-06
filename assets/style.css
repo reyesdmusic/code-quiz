@@ -46,6 +46,7 @@ body {
   margin-bottom: 100px;
   border-radius: 15px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 }
 
 #high-scores-prompt {
@@ -123,4 +124,27 @@ li {
   line-height: 40px;
   margin-bottom: 15px;
   font-size: 20px;
+}
+
+#incorrect {
+  font-family: 'Patua One';
+  color: rgb(255, 51, 0);
+}
+
+#correct {
+  font-family: 'Patua One';
+  color: rgb(42, 158, 13);
+}
+
+img {
+  height: 35px;
+  width: 35px;
+  margin: 10px;
+}
+
+#your-score {
+  font-family: 'Patua One';
+  color: rgb(255, 51, 0);
+  font-size: 50px;
+  margin: 10px;
 }

@@ -11,14 +11,17 @@
     var question = ["What is jQuery?", "What is CSS used for?", "What is the term for a function within an object?", "Which of the following is not an example of an event.", "In javaScript, which kind of enclosure is used in an array?", "What do the letters in DOM stand for?", "In CSS, which of the following denotes an ID?", "A <div> is an example of an HTML ___________ .", "What is a common feature of a responsive layout?", "Which symbol is most commonly found as the intial character in code related to jQuery?"];
 
     var correctAnswer = [1, 3, 2, 1, 4, 3, 2, 3, 1, 2];
-    var userAnswer = [];
 
+    var keepScore = [];
+ 
     //hidden div
-
-
+    $('#correct').prepend('<img id="hey" src="assets/images/hey.png" />').prepend('<img id="checkmark" src="assets/images/checkmark.png" />');
+    $('#incorrect').prepend('<img id="ohno" src="assets/images/ohno.png" />').prepend('<img id="xmark" src="assets/images/xmark.png" />');
     $("#questions-prompt").hide();
     $("#high-scores-prompt").hide();
     $("#save-score-prompt").hide();
+    $("#correct").hide();
+    $("#incorrect").hide();
 
 
     //function to cycle through questions and answers
@@ -26,7 +29,7 @@
 
     function nextQuestion() {
     
-
+     
     $("#question").text(question[i]);
     $("#checkbox-a").text(answerA[i]);
     $("#checkbox-b").text(answerB[i]);
@@ -36,17 +39,15 @@
   
 
     $("#start-quiz").on("click", function setTime() {
-    
+
+        localStorage.setItem("score", "33");
+
         $("#starting-prompt").hide();
         $("#questions-prompt").show();
         i = 0;
         nextQuestion();
-   
 
-   
-
-
-    var timeLeft = 100;
+    var timeLeft = 30;
   
     var timeInterval = setInterval(function() {
       $("#time-left").text(timeLeft + " Seconds");
@@ -55,6 +56,8 @@
       if (timeLeft === -1) {
         clearInterval(timeInterval);
         $("#questions-prompt").hide();
+        var yourScore = keepScore.length / 10  * 100;
+        $("#your-score").append("Your score is " + yourScore + "%");
         $("#save-score-prompt").show();
       }
 
@@ -63,11 +66,97 @@
         timeLeft = 0;
         $("#time-left").text(timeLeft + " Seconds");
         $("#questions-prompt").hide();
+        console.log(keepScore.length);
+        var yourScore = keepScore.length / 10  * 100;
+        $("#your-score").append("Your score is " + yourScore + "%");
         $("#save-score-prompt").show();
+
       
     }
 
     }, 1000);
+
+    var userAnswer = [];
+    console.log(userAnswer);
+
+    $("#checkbox-a").on("click", function logLetter() {
+  userAnswer.push(1);
+
+  
+  x = userAnswer.length - 1;
+  if (correctAnswer[x] === userAnswer[x]) {
+    console.log("Correct!");
+    $("#correct").show();
+    setTimeout(function() { $("#correct").hide(); }, 1000);
+    keepScore.push(1);
+    
+  }
+    else {
+      console.log("Incorrect!");
+      $("#incorrect").show();
+      setTimeout(function() { $("#incorrect").hide(); }, 1000);
+      timeLeft = timeLeft - 5;
+      
+    }
+
+  })
+
+ $("#checkbox-b").on("click", function logLetter() {
+  userAnswer.push(2);
+  x = userAnswer.length - 1;
+  if (correctAnswer[x] === userAnswer[x]) {
+    console.log("Correct!");
+    $("#correct").show();
+    setTimeout(function() { $("#correct").hide(); }, 1000);
+    keepScore.push(1);
+  }
+    else {
+      console.log("Incorrect!");
+      $("#incorrect").show();
+      setTimeout(function() { $("#incorrect").hide(); }, 1000);
+      timeLeft = timeLeft - 5;
+    }
+
+
+ })
+
+ $("#checkbox-c").on("click", function logLetter() {
+  userAnswer.push(3);
+  x = userAnswer.length - 1;
+  if (correctAnswer[x] === userAnswer[x]) {
+    console.log("Correct!");
+    $("#correct").show();
+    setTimeout(function() { $("#correct").hide(); }, 1000);
+    keepScore.push(1);
+  }
+    else {
+      console.log("Incorrect!");
+      $("#incorrect").show();
+      setTimeout(function() { $("#incorrect").hide(); }, 1000);
+      timeLeft = timeLeft - 5;
+    }
+
+
+ })
+
+ $("#checkbox-d").on("click", function logLetter() {
+  userAnswer.push(4);
+  x = userAnswer.length - 1;
+  if (correctAnswer[x] === userAnswer[x]) {
+    console.log("Correct!");
+    $("#correct").show();
+    setTimeout(function() { $("#correct").hide(); }, 1000);
+    keepScore.push(1);
+  }
+    else {
+      console.log("Incorrect!");
+      $("#incorrect").show();
+      setTimeout(function() { $("#incorrect").hide(); }, 1000);
+      timeLeft = timeLeft - 5;
+    }
+
+
+ })
   
   
   });
@@ -79,37 +168,12 @@
    nextQuestion();
 
 
+
 });
 
 $("#start-again-button").on("click", function newGame() {
-  i = 0;
-  $("#starting-prompt").show();
-  $("#save-score-prompt").hide();
-  clearInterval(timeInterval); 
-
+  location.reload();
 });
-
-$("#checkbox-a").on("click", function logLetter() {
-  userAnswer.push(1);
-  console.log(userAnswer);
-  x = userAnswer.length - 1;
-  console.log(x);
- })
-
- $("#checkbox-b").on("click", function logLetter() {
-  userAnswer.push(2);
-  console.log(userAnswer);
- })
-
- $("#checkbox-c").on("click", function logLetter() {
-  userAnswer.push(3);
-  console.log(userAnswer);
- })
-
- $("#checkbox-d").on("click", function logLetter() {
-  userAnswer.push(4);
-  console.log(userAnswer);
- })
 
 
  });
