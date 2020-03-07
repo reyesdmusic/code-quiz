@@ -3,7 +3,7 @@
 
   
     var i;
-  
+    var userNameInput = document.getElementById("user-name");
     var answerA = ["A javaScript library.", "Connecting to a server.", "Terminal", "Copy", "<>", "Disregard Order Message", "%", "DOM", "The content looks good in most viewports, regardless of size.", "*"];
     var answerB = ["An API.", "Factory restart.", "Method", "Scroll", "::", "Days Over Minutes", "#", "Dividend", "The application functions without internet connection.", "$"];
     var answerC = ["A database.", "Styling HTML.", "Single", "Hover", "{}", "Document Object Model", "thisID*", "Element", "The user is expected to respond to a series of prompts.", "@"];
@@ -13,8 +13,10 @@
     var correctAnswer = [1, 3, 2, 1, 4, 3, 2, 3, 1, 2];
 
     var keepScore = [];
+    
+    
  
-    //hidden div
+  
     $('#correct').prepend('<img id="hey" src="assets/images/hey.png" />').prepend('<img id="checkmark" src="assets/images/checkmark.png" />');
     $('#incorrect').prepend('<img id="ohno" src="assets/images/ohno.png" />').prepend('<img id="xmark" src="assets/images/xmark.png" />');
     $("#questions-prompt").hide();
@@ -24,7 +26,7 @@
     $("#incorrect").hide();
 
 
-    //function to cycle through questions and answers
+  
 
 
     function nextQuestion() {
@@ -40,7 +42,7 @@
 
     $("#start-quiz").on("click", function setTime() {
 
-        localStorage.setItem("score", "33");
+     
 
         $("#starting-prompt").hide();
         $("#questions-prompt").show();
@@ -53,15 +55,29 @@
       $("#time-left").text(timeLeft + " Seconds");
       timeLeft--;
   
-      if (timeLeft === -1) {
+      if (timeLeft <= 0) {
         clearInterval(timeInterval);
         $("#questions-prompt").hide();
         var yourScore = keepScore.length / 10  * 100;
         $("#your-score").append("Your score is " + yourScore + "%");
         $("#save-score-prompt").show();
+        $("#user-submit-button").on("click", function(event) {
+          event.preventDefault();
+      
+          var user = {
+            userScore: yourScore,
+            Name: userNameInput.value,
+          
+          };
+          $("#save-score-prompt").hide();
+          $("#high-scores-prompt").show();
+          localStorage.setItem('high-scores', JSON.stringify(user));
+          console.log(user);
+    
+        });
       }
 
-      if (i === answerA.length) {
+     else if (i === answerA.length) {
         clearInterval(timeInterval); 
         timeLeft = 0;
         $("#time-left").text(timeLeft + " Seconds");
@@ -70,6 +86,17 @@
         var yourScore = keepScore.length / 10  * 100;
         $("#your-score").append("Your score is " + yourScore + "%");
         $("#save-score-prompt").show();
+        $("#user-submit-button").on("click", function(event) {
+          event.preventDefault();
+          user = {
+            userScore: yourScore, 
+            Name: userNameInput.value,
+          };
+          $("#save-score-prompt").hide();
+          $("#high-scores-prompt").show();
+          localStorage.setItem('high-scores', JSON.stringify(user));
+          console.log(user);
+        });
 
       
     }
