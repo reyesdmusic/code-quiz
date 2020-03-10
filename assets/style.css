@@ -1,13 +1,10 @@
-input[type="button"]{
-  outline:none;
-}
 
 
 body {
     display: block;
     margin: 0px;
     /* background-color: rgb(90, 7, 4); */
-    background-color: rgb(30, 0, 138);
+    background-color: rgb(33, 0, 65);
     height: 100% auto;
     color: rgb(0, 2, 27);
   }
@@ -78,12 +75,17 @@ body {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+button:focus {
+  border: none;
+  outline: none;
+}
+
 .button {
   background-color: rgb(0, 2, 27);
   color: white;
   padding: 7px;
   border: none;
-  font-size: 16px;
+  font-size: 18px;
   border-radius: 8px;
   margin: 8px;
 }
@@ -100,13 +102,15 @@ h5 {
 }
 
 .question-button {
-  background-color: rgb(45, 134, 250);
+  background-color: rgb(207, 187, 255);
   width: 100%;
   line-height: 40px;
   margin-bottom: 15px;
   font-size: 20px;
   list-style-type: none;
   outline: none;
+  border-radius: 8px;
+  border: none;
 }
 
 button:hover {

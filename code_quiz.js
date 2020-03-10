@@ -8,7 +8,7 @@
     var answerC = ["A database.", "Styling HTML.", "Single", "Hover", "{}", "Document Object Model", "thisID*", "Element", "The user is expected to respond to a series of prompts.", "@"];
     var answerD = ["A question in Java.", "Mathematical applications.", "Round", "Click", "[]", "Data Ordering Model", "$", "Compartment", "Everything that is written is converted to audio wave files.", "&"];
     var question = ["What is jQuery?", "What is CSS used for?", "What is the term for a function within an object?", "Which of the following is not an example of an event.", "In javaScript, which kind of enclosure is used in an array?", "What do the letters in DOM stand for?", "In CSS, which of the following denotes an ID?", "A <div> is an example of an HTML ___________ .", "What is a common feature of a responsive layout?", "Which symbol is most commonly found as the intial character in code related to jQuery?"];
-
+   
     var correctAnswer = [1, 3, 2, 1, 4, 3, 2, 3, 1, 2];
 
     var keepScore = [];
@@ -24,9 +24,6 @@
     $("#save-score-prompt").hide();
     $("#correct").hide();
     $("#incorrect").hide();
-
-
-  
 
 
     function nextQuestion() {
@@ -57,6 +54,7 @@
   
       if (timeLeft <= 0) {
         clearInterval(timeInterval);
+        $("#time-left").text(0 + " Seconds");
         $("#questions-prompt").hide();
         var yourScore = keepScore.length / 10  * 100;
         $("#your-score").append("Your score is " + yourScore + "%");
@@ -64,7 +62,7 @@
         $("#user-submit-button").on("click", function(event) {
           event.preventDefault();
           $("#save-score-prompt").hide();
-          $("#high-scores-prompt").show()
+         
 
           userName = $('#user-name').val();
          
@@ -92,7 +90,8 @@
           userHighScores.push(yourScore);
 
           localStorage.setItem('storedScores', JSON.stringify(userHighScores));
-              
+         
+          $("#high-scores-prompt").show();
           render();
         });
 
@@ -110,7 +109,7 @@
         $("#user-submit-button").on("click", function(event) {
           event.preventDefault();
           $("#save-score-prompt").hide();
-          $("#high-scores-prompt").show();
+        
           userName = $('#user-name').val();
           score = yourScore;
          
@@ -137,7 +136,8 @@
           userHighScores.push(yourScore);
       
           localStorage.setItem('storedScores', JSON.stringify(userHighScores));    
-       
+        
+          $("#high-scores-prompt").show();
         render();
         });
       
@@ -263,8 +263,10 @@ $("#high-scores-tab").on("click", function() {
   $("#starting-prompt").hide();
   $("#questions-prompt").hide();
   $("#save-score-prompt").hide();
+render();
  
-  render();
+
+  
 
 })
 
@@ -275,17 +277,16 @@ function previousScores() {
 }
 
 function render() {
- 
+  
   var renderScore = JSON.parse(localStorage.getItem("storedScores"));
   var renderNames = JSON.parse(localStorage.getItem("storedNames"));
+  $("#high-scores").html("");
   for (var i = 0; i < renderScore.length; i++) {
     thisScore = renderScore[i];
     thisName = renderNames[i];
     x = i + 1;
 $("#high-scores").append("<li>" + "  " + x + ". " + thisName + "  |  " + thisScore + "</li>");
   }
-
-
 
 }
 
