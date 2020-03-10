@@ -15,7 +15,7 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <button class="navbar-brand" id="high-scores"><h2>High Scores</h2></button>
+        <button class="navbar-brand" id="high-scores-tab"><h2>High Scores</h2></button>
         <div class="nav-item" id="timer">Time Left:<div id="time-left"></div></div>
         
     </nav>
@@ -41,12 +41,12 @@
                 <br>
                 <br>
                 
-                <ul>
-                    <li><button class="question-button" id="checkbox-a"></button></li>
-                    <li><button class="question-button" id="checkbox-b"></button></li>
-                    <li><button class="question-button" id="checkbox-c"></button></li>
-                    <li><button class="question-button" id="checkbox-d"></button></li>
-                </ul>
+
+                    <button class="question-button" id="checkbox-a"></button>
+                    <button class="question-button" id="checkbox-b"></button>
+                    <button class="question-button" id="checkbox-c"></button>
+                    <button class="question-button" id="checkbox-d"></button>
+               
  
                 <div>
                     <h3 id="correct">Correct!</h3>
@@ -61,7 +61,7 @@
                 <label for="user-name">Your Initials</label>
                 <input type="text" id="user-name"/>
                 <br>
-                <button class="button" id="user-submit-button">Submit</button>
+                <button class="button" id="user-submit-button">Save</button>
                 <button class="button" id="start-again-button">Start Again</button>
 
     
@@ -71,7 +71,7 @@
             <section class="col-xs-12 col-sm-12 col-md-9 col-lg-7"  id="high-scores-prompt">
                 
                 <h2>High Scores</h2>
-                <div id="high-scores"> </div>
+                <ul id="high-scores"></ul>
                 <button class="button" id="go-back">Go Back</button>
                 <button class="button" id="clear-high-scores">Clear Scores</button>
             

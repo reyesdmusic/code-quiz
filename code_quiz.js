@@ -1,9 +1,8 @@
 
  $(document).ready(function() {
 
-  
+    
     var i;
-    var userNameInput = document.getElementById("user-name");
     var answerA = ["A javaScript library.", "Connecting to a server.", "Terminal", "Copy", "<>", "Disregard Order Message", "%", "DOM", "The content looks good in most viewports, regardless of size.", "*"];
     var answerB = ["An API.", "Factory restart.", "Method", "Scroll", "::", "Days Over Minutes", "#", "Dividend", "The application functions without internet connection.", "$"];
     var answerC = ["A database.", "Styling HTML.", "Single", "Hover", "{}", "Document Object Model", "thisID*", "Element", "The user is expected to respond to a series of prompts.", "@"];
@@ -14,7 +13,8 @@
 
     var keepScore = [];
     
-    
+    var userHighScores = [];
+    var storedUserNames = [];
  
   
     $('#correct').prepend('<img id="hey" src="assets/images/hey.png" />').prepend('<img id="checkmark" src="assets/images/checkmark.png" />');
@@ -63,19 +63,40 @@
         $("#save-score-prompt").show();
         $("#user-submit-button").on("click", function(event) {
           event.preventDefault();
-      
-          var user = {
-            userScore: yourScore,
-            Name: userNameInput.value,
-          
-          };
           $("#save-score-prompt").hide();
-          $("#high-scores-prompt").show();
-          localStorage.setItem('high-scores', JSON.stringify(user));
-          console.log(user);
-    
+          $("#high-scores-prompt").show()
+
+          userName = $('#user-name').val();
+         
+         
+         
+          var theseNames = JSON.parse(localStorage.getItem("storedNames"));
+
+          if (theseNames !== null) {
+            for (var i = 0; i < theseNames.length; i++) {
+              storedUserNames.push(theseNames[i]);
+              }
+          }
+
+          storedUserNames.push(userName);
+      
+          localStorage.setItem('storedNames', JSON.stringify(storedUserNames));
+          
+          var theseScores = JSON.parse(localStorage.getItem("storedScores"));
+
+          if (theseScores !== null) {
+            for (var i = 0; i < theseScores.length; i++) {
+              userHighScores.push(theseScores[i]);
+              }
+          }
+          userHighScores.push(yourScore);
+
+          localStorage.setItem('storedScores', JSON.stringify(userHighScores));
+              
+          render();
         });
-      }
+
+        }
 
      else if (i === answerA.length) {
         clearInterval(timeInterval); 
@@ -88,16 +109,37 @@
         $("#save-score-prompt").show();
         $("#user-submit-button").on("click", function(event) {
           event.preventDefault();
-          user = {
-            userScore: yourScore, 
-            Name: userNameInput.value,
-          };
           $("#save-score-prompt").hide();
           $("#high-scores-prompt").show();
-          localStorage.setItem('high-scores', JSON.stringify(user));
-          console.log(user);
-        });
+          userName = $('#user-name').val();
+          score = yourScore;
+         
+      
+          var theseNames = JSON.parse(localStorage.getItem("storedNames"));
 
+          if (theseNames !== null) {
+            for (var i = 0; i < theseNames.length; i++) {
+          storedUserNames.push(theseNames[i]);
+          }
+        }
+
+          storedUserNames.push(userName);
+      
+          localStorage.setItem('storedNames', JSON.stringify(storedUserNames));
+          
+          var theseScores = JSON.parse(localStorage.getItem("storedScores"));
+
+          if (theseScores !== null) {
+            for (var i = 0; i < theseScores.length; i++) {
+              userHighScores.push(theseScores[i]);
+              }
+          }
+          userHighScores.push(yourScore);
+      
+          localStorage.setItem('storedScores', JSON.stringify(userHighScores));    
+       
+        render();
+        });
       
     }
 
@@ -205,9 +247,45 @@ $("#start-again-button").on("click", function newGame() {
 
  });
 
+$("#go-back").on("click", function () {
+  location.reload();
+})
+
+$("#clear-high-scores").on("click", function(){
+  $("#high-scores").text("");
+  localStorage.clear("storedScores");
+  localStorage.clear("storedNames");
+})
+
+
+$("#high-scores-tab").on("click", function() {
+  $("#high-scores-prompt").show();
+  $("#starting-prompt").hide();
+  $("#questions-prompt").hide();
+  $("#save-score-prompt").hide();
+ 
+  render();
+
+})
+
+
+function previousScores() {
+
+  localStorage.getItem('storedScores', JSON.stringify(userHighScores));
+}
+
+function render() {
+ 
+  var renderScore = JSON.parse(localStorage.getItem("storedScores"));
+  var renderNames = JSON.parse(localStorage.getItem("storedNames"));
+  for (var i = 0; i < renderScore.length; i++) {
+    thisScore = renderScore[i];
+    thisName = renderNames[i];
+    x = i + 1;
+$("#high-scores").append("<li>" + "  " + x + ". " + thisName + "  |  " + thisScore + "</li>");
+  }
 
 
 
-
-  
+}
 
